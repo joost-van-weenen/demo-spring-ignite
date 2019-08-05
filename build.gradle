@@ -1,0 +1,29 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'org.apache.ignite:ignite-core:2.7.5'
+	implementation 'org.apache.ignite:ignite-spring:2.7.5'
+	implementation 'org.apache.ignite:ignite-indexing:2.7.5'
+
+	// https://github.com/srecon/ignite-book-code-samples/issues/2
+	implementation 'com.h2database:h2:1.4.195'
+
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
