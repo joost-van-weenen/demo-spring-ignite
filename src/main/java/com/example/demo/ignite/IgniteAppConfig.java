@@ -31,9 +31,16 @@ public class IgniteAppConfig {
 
     @Bean
     public TcpDiscoverySharedFsIpFinder createIpFinder() throws IOException {
-        var path = Path.of("/tmp/ignite12345");
-        if (!Files.exists(path)) {
-            path = Files.createDirectory(path);
+        Path path;
+        var useTmpDir = true;
+        if (useTmpDir) {
+            path = Files.createTempDirectory("ignite");
+            path.toFile().deleteOnExit();
+        } else {
+            path = Path.of("/tmp/ignite12345");
+            if (!Files.exists(path)) {
+                path = Files.createDirectory(path);
+            }
         }
         return new TcpDiscoverySharedFsIpFinder().setPath(path.toAbsolutePath().toString());
     }
